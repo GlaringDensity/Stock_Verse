@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -8,22 +8,35 @@ import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
 const BuyActionWindow = ({ uid }) => {
+  const { closeBuyWindow } = useContext(GeneralContext); // Use context here
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
-  const handleBuyClick = () => {
-    axios.post("http://localhost:3002/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY",
-    });
-
-    GeneralContext.closeBuyWindow();
+  const handleBuyClick = async () => {
+    try {
+      await axios.post("http://localhost:3002/newOrder", {
+        name: uid,
+        qty: Number(stockQuantity), // ✅ Convert to number
+        price: Number(stockPrice),  // ✅ Convert to number
+        mode: "BUY",
+      });
+  
+      await axios.put("http://localhost:3002/updateHolding", {
+        name: uid,
+        qty: Number(stockQuantity), // ✅ Convert to number
+      });
+  
+      closeBuyWindow(); // Properly close the window using context
+    } catch (error) {
+      console.error("Error processing order:", error);
+      alert("Error processing order. Please try again.");
+    }
   };
+  
+  
 
   const handleCancelClick = () => {
-    GeneralContext.closeBuyWindow();
+    closeBuyWindow(); // Properly close the window using context
   };
 
   return (

@@ -191,6 +191,11 @@ app.get("/allPositions", async(req, res) => {
   res.json(allPositions);
 });
 
+app.get("/allOrders", async(req, res) => {
+  let allOrders = await OrdersModel.find({});
+  res.json(allOrders);
+});
+
 app.post("/newOrder", async(req, res) => {
   let newOrder = new OrdersModel({
     name: req.body.name,
@@ -202,6 +207,23 @@ app.post("/newOrder", async(req, res) => {
   newOrder.save();
   res.send("Order saved !");
 });
+
+app.put("/updateHolding", async (req, res) => {
+  const { name, qty } = req.body;
+
+  try {
+    let holding = await HoldingsModel.findOne({ name }); // ✅ Use correct model and await
+    if (!holding) {
+      return res.status(404).json({ error: "Holding not found" });
+    }
+
+    holding.qty += qty; // ✅ Update quantity
+    await holding.save(); // ✅ Correct way to save
+  } catch (error) {
+    res.status(500).json({ error: "Error updating holding", details: error });
+  }
+});
+
 
 app.listen(PORT, () => {
     console.log("App started");
