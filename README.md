@@ -25,12 +25,12 @@ This project is a **Zerodha Clone** built using the **MERN (MongoDB, Express.js,
 - Gemini API / Dialogflow (for chatbot functionality)
 
 ## 📷 Screenshots
-(https://private-user-images.githubusercontent.com/167563193/420574314-b65c3d59-ee01-4db2-9ab6-aa213c3b62d3.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDE0MjA5NjksIm5iZiI6MTc0MTQyMDY2OSwicGF0aCI6Ii8xNjc1NjMxOTMvNDIwNTc0MzE0LWI2NWMzZDU5LWVlMDEtNGRiMi05YWI2LWFhMjEzYzNiNjJkMy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzA4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMwOFQwNzU3NDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mZDhjOTFiZjg4NTFlZjlhNjhkYjk5OGVhMmQzOTMzNDU1MWEzZDIzNzI2MTc4YTc0MjdmZWZlZDE2MGI3MGJlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.fyZaoZGzQ1URw2A5xfxiHaKcZpiZPQ26Qr-BQIbQtm8)
+(frontend/public/media/screenshot (6).png)
 
 
 ## 🤝 Contributing
 Feel free to fork this repository and submit pull requests!
 
 ## 📞 Contact
-For any queries, reach out to me at `your.email@example.com`
+For any queries, reach out to me at `aadityabneke@gmail.com`
 
