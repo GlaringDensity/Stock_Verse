@@ -12,6 +12,7 @@ import SupportPage from './landing_page/support/SupportPage';
 import Navbar from './landing_page/Navbar';
 import Footer from './landing_page/Footer';
 import NotFound from './landing_page/NotFound';
+import Chatbot from './components/Chatbot';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,12 +20,12 @@ root.render(
   <BrowserRouter>
   <Navbar></Navbar>
     <Routes>
-      <Route path="/" element={<HomePage />}></Route>
+      <Route path="/" element={<><HomePage /><Chatbot/></>}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/about" element={<AboutPage />}></Route>
-      <Route path="/product" element={<ProductPage />}></Route>
-      <Route path="/pricing" element={<PricingPage />}></Route>
-      <Route path="/support" element={<SupportPage />}></Route>
+      {/* <Route path="/about" element={<AboutPage />}></Route> */}
+      <Route path="/product" element={<><ProductPage /><Chatbot/></>}></Route>
+      <Route path="/pricing" element={<><PricingPage /><Chatbot/></>}></Route>
+      <Route path="/support" element={<><SupportPage /><Chatbot/></>}></Route>
       <Route path="*" element={<NotFound />}></Route>
     </Routes>
     <Footer></Footer>
