@@ -22,48 +22,7 @@ This project is a **Zerodha Clone** built using the **MERN (MongoDB, Express.js,
 - Node.js & Express.js (for server-side logic)
 - MongoDB (for database management)
 - WebSockets (for real-time stock updates)
-- OpenAI API / Dialogflow (for chatbot functionality)
-
-## 🔧 Setup & Installation
-### 1️⃣ Clone the Repository
-```sh
-git clone https://github.com/your-username/zerodha-clone.git
-cd zerodha-clone
-```
-
-### 2️⃣ Install Dependencies
-#### Backend Setup:
-```sh
-cd backend
-npm install
-```
-#### Frontend Setup:
-```sh
-cd frontend
-npm install
-```
-
-### 3️⃣ Configure Environment Variables
-Create a `.env` file in the backend folder and add the following:
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-STOCK_API_KEY=your_stock_api_key
-CHATBOT_API_KEY=your_chatbot_api_key
-```
-
-### 4️⃣ Run the Application
-#### Start Backend Server:
-```sh
-cd backend
-npm run dev
-```
-#### Start Frontend:
-```sh
-cd frontend
-npm start
-```
-The application will be accessible at `http://localhost:3000`
+- Gemini API / Dialogflow (for chatbot functionality)
 
 ## 📷 Screenshots
 *(Add screenshots of your application UI here)*
