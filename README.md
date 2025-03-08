@@ -27,9 +27,6 @@ This project is a **Zerodha Clone** built using the **MERN (MongoDB, Express.js,
 ## 📷 Screenshots
 *(Add screenshots of your application UI here)*
 
-## 📜 License
-This project is open-source and available under the MIT License.
-
 ## 🤝 Contributing
 Feel free to fork this repository and submit pull requests!
 
