@@ -24,9 +24,6 @@ This project is a **Zerodha Clone** built using the **MERN (MongoDB, Express.js,
 - WebSockets (for real-time stock updates)
 - Gemini API / Dialogflow (for chatbot functionality)
 
-## 📷 Screenshots
-(frontend/public/media/screenshot (6).png)
-
 
 ## 🤝 Contributing
 Feel free to fork this repository and submit pull requests!
