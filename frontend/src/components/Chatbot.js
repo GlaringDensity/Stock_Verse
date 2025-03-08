@@ -5,7 +5,7 @@ import { BiSupport } from "react-icons/bi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './chatbot.css'
 
-const GEMINI_API_KEY = "AIzaSyCINQxg7kwwqJvxqJY0ySix8N1nuAxHG1A"; // Replace with your actual API key
+const GEMINI_API_KEY = "AIzaSyCINQxg7kwwqJvxqJY0ySix8N1nuAxHG1A"; 
 
 const Chatbot = () => {
   const [click, setClick] = useState(false);
