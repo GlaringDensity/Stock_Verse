@@ -24,6 +24,8 @@ This project is a **Zerodha Clone** built using the **MERN (MongoDB, Express.js,
 - WebSockets (for real-time stock updates)
 - Gemini API / Dialogflow (for chatbot functionality)
 
+[(https://github.com/GlaringDensity/Stock_Verse/blob/main/frontend/public/media/Demo.mp4)](https://github.com/user-attachments/assets/24046166-ca6c-408d-916d-de5940fee09f)
+
 
 ## 🤝 Contributing
 Feel free to fork this repository and submit pull requests!
