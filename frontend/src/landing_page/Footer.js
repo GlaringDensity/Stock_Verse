@@ -6,8 +6,8 @@ function Footer() {
       <div className="container border-top mt-5">
         <div className="row mt-5">
           <div className="col">
-            <img src="media/logo.svg" style={{ width: "50%" }} alt="Logo" />
-            <p>&copy; 2010 - 2024, Not Zerodha Broking Ltd. All rights reserved.</p>
+            <img src="media/logog.png" style={{ width: "50%" }} alt="Logo" />
+            <p>&copy; 2010 - 2024, Not Stock Verse Broking Ltd. All rights reserved.</p>
           </div>
           <div className="col">
             <p>Company</p>
@@ -16,9 +16,9 @@ function Footer() {
             <a href="" className="custom-link">Pricing</a>
             <a href="" className="custom-link">Referral programme</a>
             <a href="" className="custom-link">Careers</a>
-            <a href="" className="custom-link">Zerodha.tech</a>
+            <a href="" className="custom-link">Stock Verse.tech</a>
             <a href="" className="custom-link">Press & media</a>
-            <a href="" className="custom-link">Zerodha cares (CSR)</a>
+            <a href="" className="custom-link">Stock Verse cares (CSR)</a>
           </div>
           <div className="col">
             <p>Support</p>
@@ -37,15 +37,15 @@ function Footer() {
         </div>
         <div className="mt-5 text-muted" style={{ fontSize: "14px" }}>
           <p>
-            Zerodha Broking Ltd.: Member of NSE​ &​ BSE – SEBI Registration no.:
-            INZ000031633 CDSL: Depository services through Zerodha Securities
+            Stock Verse Broking Ltd.: Member of NSE​ &​ BSE – SEBI Registration no.:
+            INZ000031633 CDSL: Depository services through Stock Verse Securities
             Pvt. Ltd. – SEBI Registration no.: IN-DP-100-2015 Commodity Trading
-            through Zerodha Commodities Pvt. Ltd. MCX: 46025 – SEBI Registration
-            no.: INZ000038238 Registered Address: Zerodha Broking Ltd.,
+            through Stock Verse Commodities Pvt. Ltd. MCX: 46025 – SEBI Registration
+            no.: INZ000038238 Registered Address: Stock Verse Broking Ltd.,
             #153/154, 4th Cross, Dollars Colony, Opp. Clarence Public School,
             J.P Nagar 4th Phase, Bengaluru - 560078, Karnataka, India. For any
             complaints pertaining to securities broking please write to
-            complaints@zerodha.com, for DP related to dp@zerodha.com. Please
+            complaints@Stock Verse.com, for DP related to dp@Stock Verse.com. Please
             ensure you carefully read the Risk Disclosure Document as prescribed
             by SEBI | ICF
           </p>
@@ -77,7 +77,7 @@ function Footer() {
             of allotment. In case of non allotment the funds will remain in your
             bank account. As a business we don't give stock tips, and have not
             authorized anyone to trade on behalf of others. If you find anyone
-            claiming to be part of Zerodha and offering such services, please
+            claiming to be part of Stock Verse and offering such services, please
             create a ticket here.
           </p>
         </div>

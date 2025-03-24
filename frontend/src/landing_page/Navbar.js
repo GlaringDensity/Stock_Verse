@@ -6,7 +6,7 @@ function Navbar() {
             <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light border-bottom">
             <div class="container">
                 <Link class="navbar-brand" to={"/"}>
-                    <img src='media/logo.svg' style={{width: "25%"}}></img>
+                    <img src='media/logog.png' style={{width: "25%"}}></img>
                 </Link>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
