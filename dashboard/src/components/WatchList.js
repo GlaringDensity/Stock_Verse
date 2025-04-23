@@ -16,7 +16,6 @@ const labels = watchlist.map((stock) => stock["name"]);
 
 const WatchList = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  // Filter watchlist based on search query (case-insensitive)
   const filteredWatchlist = watchlist.filter((stock) =>
     stock.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -41,7 +40,7 @@ const WatchList = () => {
           padding: 8px 12px;
           border: 1px solid #ccc;
           border-radius: 4px;
-          color: #333; /* Darker text for visibility */
+          color: #333;
           font-size: 14px;
         }
         .search-container input.search::placeholder {
@@ -68,7 +67,6 @@ const WatchList = () => {
           align-items: center;
           box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        /* Align company names to the left */
         .list li .item p {
           text-align: left;
           margin: 0;
@@ -82,7 +80,6 @@ const WatchList = () => {
           font-size: 14px;
           color: #888;
         }
-        /* Position actions absolutely on the right */
         .actions {
           position: absolute;
           right: 10px;
@@ -103,7 +100,6 @@ const WatchList = () => {
           font-size: 14px;
           padding: 5px;
         }
-        /* Buy button in muted red, Sell button in muted blue */
         .actions button.buy {
           background-color: #b71c1c;
           color: white;
@@ -200,40 +196,132 @@ const WatchListItem = ({ stock }) => {
 
 const WatchListActions = ({ uid }) => {
   const generalContext = useContext(GeneralContext);
+  const stock = watchlist.find((s) => s.name === uid);
+  const [showSellWindow, setShowSellWindow] = useState(false);
 
   const handleBuyClick = () => {
     generalContext.openBuyWindow(uid);
   };
 
+  const handleSellClick = () => {
+    setShowSellWindow(true);
+  };
+
   return (
-    <span className="actions">
-      <Tooltip
-        title="Buy (B)"
-        placement="top"
-        arrow
-        TransitionComponent={Grow}
-        onClick={handleBuyClick}
-      >
-        <button className="buy">Buy</button>
-      </Tooltip>
-      <Tooltip title="Sell (S)" placement="top" arrow TransitionComponent={Grow}>
-        <button className="sell">Sell</button>
-      </Tooltip>
-      <Tooltip
-        title="Analytics (A)"
-        placement="top"
-        arrow
-        TransitionComponent={Grow}
-      >
-        <button className="action">
-          <BarChartOutlined className="icon" />
-        </button>
-      </Tooltip>
-      <Tooltip title="More" placement="top" arrow TransitionComponent={Grow}>
-        <button className="action">
-          <MoreHoriz className="icon" />
-        </button>
-      </Tooltip>
-    </span>
+    <>
+      <span className="actions">
+        <Tooltip title="Buy (B)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="buy" onClick={handleBuyClick}>Buy</button>
+        </Tooltip>
+        <Tooltip title="Sell (S)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="sell" onClick={handleSellClick}>Sell</button>
+        </Tooltip>
+        <Tooltip title="Analytics (A)" placement="top" arrow TransitionComponent={Grow}>
+          <button className="action">
+            <BarChartOutlined className="icon" />
+          </button>
+        </Tooltip>
+        <Tooltip title="More" placement="top" arrow TransitionComponent={Grow}>
+          <button className="action">
+            <MoreHoriz className="icon" />
+          </button>
+        </Tooltip>
+      </span>
+      {showSellWindow && (
+        <SellWindow stock={stock} onClose={() => setShowSellWindow(false)} />
+      )}
+    </>
   );
+};
+
+const SellWindow = ({ stock, onClose }) => {
+  const [quantity, setQuantity] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSell = async () => {
+    const qty = parseInt(quantity);
+  
+    if (!qty || qty <= 0) {
+      return setError("Enter a valid quantity.");
+    }
+  
+    try {
+      const response = await fetch("http://localhost:3002/sellStock", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // if using cookies/session
+        body: JSON.stringify({ name: stock.name, qty }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok || !data.success) {
+        setError(data.error || "Sell failed.");
+      } else {
+        alert(data.message);
+        onClose();
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong.");
+    }
+  };
+  
+
+  return (
+    <div style={sellWindowStyles.overlay}>
+      <div style={sellWindowStyles.window}>
+        <h3>Sell {stock.name}</h3>
+        <p>Owned: {stock.quantity} shares</p>
+        <input
+          type="number"
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          placeholder="Quantity"
+          style={sellWindowStyles.input}
+        />
+        {error && <p style={sellWindowStyles.error}>{error}</p>}
+        <div style={sellWindowStyles.actions}>
+          <button style={sellWindowStyles.sellBtn} onClick={handleSell}>Sell</button>
+          <button style={sellWindowStyles.cancelBtn} onClick={onClose}>Cancel</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const sellWindowStyles = {
+  overlay: {
+    position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    display: "flex", justifyContent: "center", alignItems: "center",
+    zIndex: 9999,
+  },
+  window: {
+    background: "#fff",
+    padding: "20px",
+    borderRadius: "10px",
+    minWidth: "300px",
+    boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+  },
+  input: {
+    width: "100%", padding: "10px", marginTop: "10px",
+    border: "1px solid #ccc", borderRadius: "4px",
+  },
+  error: {
+    color: "red", fontSize: "13px", marginTop: "5px",
+  },
+  actions: {
+    marginTop: "15px", display: "flex", justifyContent: "space-between",
+  },
+  sellBtn: {
+    backgroundColor: "#0d47a1", color: "#fff", padding: "8px 16px",
+    border: "none", borderRadius: "4px", cursor: "pointer",
+  },
+  cancelBtn: {
+    backgroundColor: "#aaa", color: "#fff", padding: "8px 16px",
+    border: "none", borderRadius: "4px", cursor: "pointer",
+  },
 };

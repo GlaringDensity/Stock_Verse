@@ -8,35 +8,50 @@ import GeneralContext from "./GeneralContext";
 import "./BuyActionWindow.css";
 
 const BuyActionWindow = ({ uid }) => {
-  const { closeBuyWindow } = useContext(GeneralContext); // Use context here
+  const { closeBuyWindow } = useContext(GeneralContext); 
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
 
   const handleBuyClick = async () => {
     try {
+      // new order
       await axios.post("http://localhost:3002/newOrder", {
         name: uid,
-        qty: Number(stockQuantity), // ✅ Convert to number
-        price: Number(stockPrice),  // ✅ Convert to number
+        qty: Number(stockQuantity),
+        price: Number(stockPrice),
         mode: "BUY",
       });
   
-      await axios.put("http://localhost:3002/updateHolding", {
-        name: uid,
-        qty: Number(stockQuantity), // ✅ Convert to number
-      });
+      // Update holding
+      try {
+        await axios.put("http://localhost:3002/updateHolding", {
+          name: uid,
+          qty: Number(stockQuantity),
+        });
+      } catch (error) {
+        // create new
+        if (error.response && error.response.status === 404) {
+          console.log("Holding not found, creating a new one.");
+          await axios.post("http://localhost:3002/createHolding", {
+            name: uid,
+            qty: Number(stockQuantity),
+            price: Number(stockPrice),
+          });
+        } else {
+          throw error; 
+        }
+      }
   
-      closeBuyWindow(); // Properly close the window using context
+      closeBuyWindow(); 
     } catch (error) {
       console.error("Error processing order:", error);
       alert("Error processing order. Please try again.");
     }
   };
-  
-  
+    
 
   const handleCancelClick = () => {
-    closeBuyWindow(); // Properly close the window using context
+    closeBuyWindow(); 
   };
 
   return (

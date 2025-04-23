@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
-const { Signup, Login } = require("./controllers/AuthController"); // Import AuthController
+const { Signup, Login } = require("./controllers/AuthController"); 
 const { userVerification } = require("./middlewares/AuthMiddleware");
 
 const PORT = process.env.PORT || 3002;
@@ -97,6 +97,78 @@ app.put("/updateHolding", async (req, res) => {
     res.status(500).json({ error: "Error updating holding", details: error });
   }
 });
+
+// create holdings
+app.post("/createHolding", async (req, res) => {
+  const { name, qty, price } = req.body;
+
+  try {
+    const avg = price;
+    const net = (qty * price).toFixed(2); 
+    const day = "0.00%"; 
+
+    const newHolding = new HoldingsModel({
+      name,
+      qty,
+      avg,
+      price,
+      net,
+      day,
+    });
+
+    await newHolding.save();
+    res.status(201).json({ message: "Holding created successfully", holding: newHolding });
+
+  } catch (error) {
+    res.status(500).json({ error: "Error creating holding", details: error });
+  }
+});
+
+
+// Sell stock
+app.post("/sellStock", async (req, res) => {
+  const { name, qty } = req.body;
+
+  if (!name || qty == null) {
+    return res.status(400).json({ success: false, error: "Missing data." });
+  }
+
+  const quantityToSell = parseInt(qty);
+  if (isNaN(quantityToSell) || quantityToSell <= 0) {
+    return res.status(400).json({ success: false, error: "Invalid quantity." });
+  }
+
+  try {
+    const holding = await HoldingsModel.findOne({ name });
+
+    if (!holding) {
+      return res.status(404).json({ success: false, error: `You do not own any shares of ${name}.` });
+    }
+
+    if (holding.qty < quantityToSell) {
+      return res.status(400).json({
+        success: false,
+        error: `You only own ${holding.qty} shares of ${name}.`,
+      });
+    }
+
+    holding.qty -= quantityToSell;
+
+    if (holding.qty === 0) {
+      await HoldingsModel.deleteOne({ name });
+    } else {
+      await holding.save();
+    }
+
+    res.json({
+      success: true,
+      message: `Sold ${quantityToSell} shares of ${name}.`,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: "Server error", details: error });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
