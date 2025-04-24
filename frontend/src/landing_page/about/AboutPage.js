@@ -6,7 +6,6 @@ import Team from "./Team";
 function PricingPage() {
   return (
     <>
-
       <Team />
     </>
   );
