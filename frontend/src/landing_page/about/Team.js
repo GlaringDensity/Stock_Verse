@@ -1,53 +1,196 @@
 import React from "react";
 
 function Team() {
+  const styles = {
+    outer: {
+      minHeight: "100vh",
+      background: "linear-gradient(to bottom right, #f1f5f9, #e2e8f0)",
+      padding: "48px 16px",
+      fontFamily: `"Inter", sans-serif`,
+    },
+    inner: {
+      maxWidth: "800px",
+      margin: "0 auto",
+      backgroundColor: "#ffffff",
+      boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+      borderRadius: "24px",
+      padding: "56px",
+      transition: "box-shadow 0.3s ease",
+    },
+    heroImage: {
+      width: "100%",
+      height: "260px",
+      objectFit: "cover",
+      borderRadius: "16px",
+      boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+    },
+    title: {
+      fontSize: "48px",
+      fontWeight: 800,
+      color: "#1e293b",
+      textAlign: "center",
+      margin: "32px 0",
+      textShadow: "1px 1px 2px rgba(0,0,0,0.05)",
+    },
+    section: {
+      color: "#374151",
+      fontSize: "18px",
+      lineHeight: 1.6,
+      marginBottom: "32px",
+    },
+    featuresSection: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: "24px",
+      backgroundColor: "#f8fafc",
+      borderLeft: "4px solid #3b82f6",
+      padding: "24px",
+      borderRadius: "12px",
+      boxShadow: "0 5px 15px rgba(0,0,0,0.05)",
+      marginBottom: "32px",
+      flexWrap: "wrap",
+    },
+    featuresImage: {
+      flex: "1 1 200px",
+      width: "100%",
+      height: "180px",
+      objectFit: "cover",
+      borderRadius: "12px",
+      boxShadow: "0 3px 10px rgba(0,0,0,0.05)",
+    },
+    h2: {
+      fontSize: "24px",
+      fontWeight: 600,
+      color: "#3b82f6",
+      marginBottom: "16px",
+    },
+    list: {
+      margin: 0,
+      paddingLeft: "20px",
+      color: "#374151",
+      fontSize: "18px",
+      lineHeight: 1.6,
+    },
+    flexSection: {
+      display: "flex",
+      alignItems: "center",
+      gap: "24px",
+      marginBottom: "32px",
+      flexWrap: "wrap",
+    },
+    missionImage: {
+      flex: "1 1 200px",
+      width: "100%",
+      height: "200px",
+      objectFit: "cover",
+      borderRadius: "12px",
+      boxShadow: "0 3px 10px rgba(0,0,0,0.05)",
+    },
+    marketSection: {
+      marginBottom: "32px",
+    },
+    marketImage: {
+      width: "100%",
+      height: "220px",
+      objectFit: "cover",
+      borderRadius: "12px",
+      boxShadow: "0 3px 10px rgba(0,0,0,0.05)",
+      marginBottom: "16px",
+    },
+    closing: {
+      textAlign: "center",
+      paddingTop: "32px",
+      borderTop: "1px solid #e5e7eb",
+      color: "#1e293b",
+    },
+    closingSub: {
+      color: "#4b5563",
+      fontStyle: "italic",
+      marginTop: "8px",
+      fontSize: "16px",
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 px-4 py-12">
-      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl p-10 md:p-14 space-y-10 transition-all duration-300 hover:shadow-2xl">
+    <div style={styles.outer}>
+      <div
+        style={styles.inner}
+        onMouseEnter={e =>
+          (e.currentTarget.style.boxShadow = "0 15px 35px rgba(0,0,0,0.15)")
+        }
+        onMouseLeave={e =>
+          (e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)")
+        }
+      >
         
-        <h1 className="text-5xl font-extrabold text-slate-800 text-center">About us</h1>
 
-        <section className="space-y-4 text-gray-700 text-lg leading-relaxed">
-          <p>
-            Our website is a centralized platform designed to help businesses and developers manage, monitor, and visualize their operations in real-time. From tracking user activity to analyzing system performance, our dashboard simplifies the way data is consumed and decisions are made.
-          </p>
+        <h1 style={styles.title}>About Us</h1>
 
+        {/* Intro */}
+        <section style={styles.section}>
           <p>
-            Built with precision and flexibility in mind, the dashboard is crafted using <span className="font-semibold text-blue-600">React</span> and <span className="font-semibold text-blue-600">Tailwind CSS</span>. This ensures a seamless and responsive experience across all modern devices.
+            Welcome to our Dashboard Platform—a single pane of glass for
+            monitoring, managing, and visualizing your data in real time. We
+            empower teams with instant insights, so you can make smarter
+            decisions faster.
           </p>
         </section>
 
-        <section className="bg-slate-50 border-l-4 border-blue-500 px-6 py-6 md:px-10 md:py-8 rounded-xl">
-          <h2 className="text-2xl font-semibold text-blue-600 mb-4">Key Features</h2>
-          <ul className="list-disc list-inside space-y-2 text-base">
-            <li>Real-time analytics and performance monitoring</li>
-            <li>User access control </li>
-            <li>Interactive charts, graphs, and reports</li>
-            <li>Activity logs, user actions, and security tracking</li>
-            <li>Custom widgets for fast insights</li>
-            <li>Fully responsive interface with sidebar navigation</li>
+        {/* Key Features */}
+        <div style={styles.featuresSection}>
+          <div style={{ flex: 1, minWidth: "200px" }}>
+            <h2 style={styles.h2}>Key Features</h2>
+            <ul style={styles.list}>
+              <li>Real-time analytics & performance metrics</li>
+              <li>Fine-grained user access control</li>
+              <li>Interactive charts, graphs & downloadable reports</li>
+              <li>Comprehensive activity logs & security tracking</li>
+              <li>Customizable widgets for quick insights</li>
+              <li>Responsive layout with collapsible navbar</li>
+            </ul>
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80"
+            alt="Analytics charts"
+            style={styles.featuresImage}
+          />
+        </div>
+
+        {/* Market Insights */}
+        <section style={styles.marketSection}>
+          <h2 style={styles.h2}>Market Insights</h2>
+          
+          <ul style={styles.list}>
+            <li>S&P 500: +0.8% today</li>
+            <li>NASDAQ Composite: +1.2% today</li>
+            <li>Dow Jones Industrial: +0.6% today</li>
+            <li>Top Gainers: AAPL, MSFT, TSLA</li>
+            <li>Top Losers: AMZN, GOOGL, FB</li>
           </ul>
         </section>
 
-        <section className="space-y-4 text-gray-700 text-lg leading-relaxed">
-          <h2 className="text-2xl font-semibold text-blue-600">Who Is It For?</h2>
-          <p>
-            Our platform is ideal for tech startups, SaaS platforms, internal business tools, or any team that needs a robust and user-friendly interface for managing data and users. Whether you're a backend developer, operations manager, or support lead — this dashboard equips you with the tools you need to stay on top of your systems.
-          </p>
-        </section>
+        {/* Mission */}
+        <div style={styles.flexSection}>
+          
+          <div style={{ flex: 1, minWidth: "200px" }}>
+            <h2 style={styles.h2}>Our Mission</h2>
+            <p style={{ color: "#374151", fontSize: "18px", lineHeight: 1.6 }}>
+              We bridge the gap between raw data and actionable insights. By
+              combining elegant design with rock-solid performance, our goal is
+              to make analytics and admin tasks not just manageable—but
+              downright enjoyable.
+            </p>
+          </div>
+        </div>
 
-        <section className="space-y-4 text-gray-700 text-lg leading-relaxed">
-          <h2 className="text-2xl font-semibold text-blue-600">Our Mission</h2>
-          <p>
-            We aim to bridge the gap between data and decision-making by delivering a dashboard that not only looks great but performs reliably under the hood. Our goal is to make analytics and admin tasks less overwhelming and more empowering.
-          </p>
-        </section>
-
-        <div className="text-center pt-8">
-          <p className="text-xl font-semibold text-slate-800">
+        {/* Closing CTA */}
+        <div style={styles.closing}>
+          <p style={{ fontSize: "20px", fontWeight: 600 }}>
             Join us on this journey to better insights.
           </p>
-          <p className="text-gray-600">Efficiency starts with clarity — and clarity starts here.</p>
+          <p style={styles.closingSub}>
+            Efficiency starts with clarity — and clarity starts here.
+          </p>
         </div>
       </div>
     </div>
